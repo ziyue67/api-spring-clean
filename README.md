@@ -17,10 +17,10 @@
 ## 项目结构
 
 ```
-api-spring/
+api-spring-clean/
 ├── pom.xml
 ├── Dockerfile
-├── .env.example
+├── README.md
 ├── src/main/java/com/youthnightschool/
 │   ├── ApiSpringApplication.java
 │   ├── config/          # AppProperties, Security, Redis, WebMvc
@@ -32,8 +32,17 @@ api-spring/
 │   ├── security/        # JWT 认证
 │   ├── interceptor/     # 限流、日志、性能拦截器
 │   └── exception/       # 全局异常处理
-└── src/main/resources/
-    └── application.yml   # 配置
+├── src/main/resources/
+│   └── application.yml   # 配置
+└── frontend/
+    ├── app/              # 微信小程序 (Taro + React)
+    │   ├── src/
+    │   ├── package.json
+    │   └── .env.*         # API 环境变量
+    └── admin/            # 管理后台 (React + Vite)
+        ├── src/
+        ├── package.json
+        └── .env.example
 ```
 
 ## API 端点
@@ -215,6 +224,52 @@ npx prisma db push
   "message": "错误信息",
   "path": "/api/v1/..."
 }
+```
+
+## 前端开发
+
+### 微信小程序 (app)
+
+```bash
+cd frontend/app
+
+# 安装依赖
+npm install
+
+# 开发模式
+npm run dev
+
+# 微信开发者工具导入 dist 目录
+```
+
+### 管理后台 (admin)
+
+```bash
+cd frontend/admin
+
+# 安装依赖
+npm install
+
+# 开发模式
+npm run dev
+
+# 生产构建
+npm run build
+```
+
+### API 环境变量
+
+**微信小程序** (`frontend/app/.env.*`):
+
+```bash
+TARO_APP_API_BASE_URL="http://127.0.0.1:3000/api/v1"
+TARO_APP_ENV="development"
+```
+
+**管理后台** (`frontend/admin/.env.example`):
+
+```bash
+VITE_API_BASE_URL=/api/v1
 ```
 
 ## License
