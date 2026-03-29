@@ -2,6 +2,8 @@
 
 青春夜校后端 API - Spring Boot 3.4 版本
 
+课程报名 + 每日签到 + 管理运营的数字化系统
+
 ## 技术栈
 
 | 组件 | 版本 |
@@ -32,18 +34,33 @@ api-spring-clean/
 │   ├── security/        # JWT 认证
 │   ├── interceptor/     # 限流、日志、性能拦截器
 │   └── exception/       # 全局异常处理
-├── src/main/resources/
-│   └── application.yml   # 配置
-└── frontend/
-    ├── app/              # 微信小程序 (Taro + React)
-    │   ├── src/
-    │   ├── package.json
-    │   └── .env.*         # API 环境变量
-    └── admin/            # 管理后台 (React + Vite)
-        ├── src/
-        ├── package.json
-        └── .env.example
+└── src/main/resources/
+    └── application.yml   # 配置
 ```
+
+## 功能模块
+
+### 课程报名
+
+- 课程列表浏览（按学院、月份筛选）
+- 课程搜索
+- 报名/取消报名
+- 候补队列自动晋升
+- 报名统计
+
+### 每日签到
+
+- 当日签到状态查询
+- 签到积分累计
+- 签到趋势统计
+
+### 管理运营
+
+- 数据概览统计
+- 用户管理
+- 课程管理
+- 报名管理
+- 学院统计
 
 ## API 端点
 
@@ -224,52 +241,6 @@ npx prisma db push
   "message": "错误信息",
   "path": "/api/v1/..."
 }
-```
-
-## 前端开发
-
-### 微信小程序 (app)
-
-```bash
-cd frontend/app
-
-# 安装依赖
-npm install
-
-# 开发模式
-npm run dev
-
-# 微信开发者工具导入 dist 目录
-```
-
-### 管理后台 (admin)
-
-```bash
-cd frontend/admin
-
-# 安装依赖
-npm install
-
-# 开发模式
-npm run dev
-
-# 生产构建
-npm run build
-```
-
-### API 环境变量
-
-**微信小程序** (`frontend/app/.env.*`):
-
-```bash
-TARO_APP_API_BASE_URL="http://127.0.0.1:3000/api/v1"
-TARO_APP_ENV="development"
-```
-
-**管理后台** (`frontend/admin/.env.example`):
-
-```bash
-VITE_API_BASE_URL=/api/v1
 ```
 
 ## License
