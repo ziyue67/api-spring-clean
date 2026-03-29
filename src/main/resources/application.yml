@@ -1,0 +1,49 @@
+server:
+  port: ${PORT:3000}
+
+spring:
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/youth_night_school}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:123456789}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+  data:
+    redis:
+      url: ${REDIS_URL}
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+  wechat:
+    app-id: ${WECHAT_APP_ID}
+    app-secret: ${WECHAT_APP_SECRET}
+  encryption:
+    session-key: ${SESSION_KEY_ENCRYPTION_KEY}
+  admin:
+    openids: ${ADMIN_OPENIDS:}
+  phone-lookup:
+    enabled: ${ENABLE_PHONE_LOOKUP:false}
+  cors:
+    allowed-origins: ${ALLOWED_ORIGINS:}
+  perf:
+    slow-threshold-ms: ${PERF_SLOW_REQUEST_MS:3000}
+    very-slow-threshold-ms: ${PERF_VERY_SLOW_REQUEST_MS:10000}
+    headers-enabled: ${ENABLE_PERF_HEADERS:true}
+    metrics-enabled: ${ENABLE_PERF_METRICS:true}
+  redis:
+    tls: ${REDIS_TLS:false}
+    tls-reject-unauthorized: ${REDIS_TLS_REJECT_UNAUTHORIZED:true}
+  request:
+    timeout-ms: ${REQUEST_TIMEOUT_MS:30000}
